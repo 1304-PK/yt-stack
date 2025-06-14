@@ -39,7 +39,8 @@ body{
     padding: 1.2vmin 2vmin;
     border: none;
     border-radius: 50px;
-    width: 60vmin;
+    width: 100vmin;
+    min-width: 60vmin;
 }
 
 #add-button{
@@ -48,5 +49,57 @@ body{
     border: none;
     border-radius: 10px;
     border: 2px solid transparent;
+    cursor: pointer;
+}
+
+#invalid-url{
+    position: absolute;
+    color: red;
+    font-size: 1.2rem;
+    top: 32vmin;
+    left: 43vmin;
+}
+
+#play-button-div{
+    display: flex;
+    justify-content: center;
+    margin: 6vmin 0vmin 6vmin 0vmin;
+}
+
+
+#play-button{
+    font-size: 1.7rem;
+    padding: 1vmin 2.5vmin;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+#video-section{
+    /* background-color: lightblue; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7vmin;
+    justify-content: center;
+}
+
+.video-frame{
+    display: flex;
+    flex-direction: column;
+}
+
+iframe{
+    width: 400px;
+    height: 225px;
+    border: none;
+}
+
+.remove-button{
+    background-color: red;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    padding: 0.8vmin 0vmin;
     cursor: pointer;
 }
