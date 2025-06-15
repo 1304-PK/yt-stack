@@ -40,6 +40,7 @@ function renderVideos() {
         // iframe.width = "400"
         // iframe.height = "225"
         iframe.src = item.url
+        iframe.allow = "autoplay"
         iframe.allowFullscreen = true
         videoDiv.append(iframe, removeBtn)
         videoSection.append(videoDiv)
