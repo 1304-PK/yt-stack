@@ -9,8 +9,8 @@ function extractVideoId(url) {
 
 videos = []
 
-class addVideo{
-    constructor(code, url){
+class addVideo {
+    constructor(code, url) {
         this.url = url
         this.code = code
     }
@@ -20,7 +20,7 @@ const addBtn = document.getElementById('add-button')
 const playAllBtn = document.getElementById('play-button')
 const invaildUrl = document.getElementById('invalid-url')
 
-function renderVideos(){
+function renderVideos() {
     const videoSection = document.getElementById('video-section')
     videoSection.innerHTML = ''
 
@@ -30,13 +30,13 @@ function renderVideos(){
         const iframe = document.createElement('iframe')
         const removeBtn = document.createElement('button')
         removeBtn.className = 'remove-button'
-        removeBtn.textContent = 'Remove'
+        removeBtn.innerHTML = 'Remove <i class="fa-solid fa-trash"></i>'
 
         removeBtn.addEventListener('click', () => {
             videos.splice(index, 1)
             renderVideos()
         })
-        
+
         // iframe.width = "400"
         // iframe.height = "225"
         iframe.src = item.url
@@ -48,19 +48,19 @@ function renderVideos(){
 
 addBtn.addEventListener('click', () => {
     const urlInput = document.getElementById('url-input')
-    if (urlInput.value){
+    if (urlInput.value) {
         const code = extractVideoId(urlInput.value)
         const url = `https://www.youtube.com/embed/${code}?autoplay=0&mute=0`
         const video = new addVideo(code, url)
         videos.push(video)
-        
+
         renderVideos()
         invaildUrl.textContent = ''
     }
-    else{
+    else {
         invaildUrl.textContent = 'Invalid URL'
     }
-    
+
 })
 
 playAllBtn.addEventListener('click', () => {
