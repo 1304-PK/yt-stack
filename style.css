@@ -9,8 +9,8 @@
 body {
     min-height: 100vh;
     background-color: black;
-    background-image: url(assets/low-poly-grid-haikei\(2\).svg);
-    color: white;
+    background-image: url(assets/coolbackgrounds-particles-ether.png);
+    color: black;
     font-family: 'Poppins';
 }
 
@@ -42,6 +42,7 @@ body {
     border-radius: 50px;
     width: 100vmin;
     min-width: 60vmin;
+    border: 2px solid black;
 }
 
 #add-button {
@@ -75,11 +76,18 @@ body {
 
 
 #play-button {
+    background-color: black;
+    color: white;
+    border: 2px solid black;
     font-size: 1.7rem;
     padding: 1vmin 2.5vmin;
-    border: none;
     border-radius: 10px;
     cursor: pointer;
+
+    &:hover{
+        background-color: white;
+        color: black;
+    }
 }
 
 
