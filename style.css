@@ -1,32 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
-*{
+* {
     padding: 0;
     margin: 0;
 }
 
-body{
-    min-height: 100vmin;
+body {
+    min-height: 100vh;
     background-color: black;
+    background-image: url(assets/low-poly-grid-haikei\(2\).svg);
     color: white;
     font-family: 'Poppins';
 }
 
-#heading{
+#heading {
     /* background-color: lightblue; */
     text-align: center;
 }
 
-#heading h1{
+#heading h1 {
     font-size: 5rem;
 }
 
-#heading p{
+#heading p {
     font-size: 1.4rem;
 }
 
-#search-bar{
+#search-bar {
     /* background-color: lightpink; */
     display: flex;
     gap: 3vmin;
@@ -34,7 +35,7 @@ body{
     padding: 10vmin 0vmin 0vmin 0vmin;
 }
 
-#search-bar input{
+#search-bar input {
     font-size: 1.7rem;
     padding: 1.2vmin 2vmin;
     border: none;
@@ -43,16 +44,22 @@ body{
     min-width: 60vmin;
 }
 
-#add-button{
+#add-button {
     font-size: 1.7rem;
     padding: 0vmin 2vmin;
     border: none;
     border-radius: 10px;
-    border: 2px solid transparent;
+    border: 2px solid rgb(1, 212, 1);
     cursor: pointer;
+    background-color: rgb(1, 212, 1);
+    transition: border-radius 230ms;
+
+    &:hover {
+        border-radius: 50px;
+    }
 }
 
-#invalid-url{
+#invalid-url {
     position: absolute;
     color: red;
     font-size: 1.2rem;
@@ -60,14 +67,14 @@ body{
     left: 43vmin;
 }
 
-#play-button-div{
+#play-button-div {
     display: flex;
     justify-content: center;
     margin: 6vmin 0vmin 6vmin 0vmin;
 }
 
 
-#play-button{
+#play-button {
     font-size: 1.7rem;
     padding: 1vmin 2.5vmin;
     border: none;
@@ -76,7 +83,7 @@ body{
 }
 
 
-#video-section{
+#video-section {
     /* background-color: lightblue; */
     display: flex;
     flex-wrap: wrap;
@@ -84,22 +91,79 @@ body{
     justify-content: center;
 }
 
-.video-frame{
+.video-frame {
     display: flex;
     flex-direction: column;
 }
 
-iframe{
+iframe {
     width: 400px;
     height: 225px;
     border: none;
 }
 
-.remove-button{
+.remove-button {
     background-color: red;
     color: white;
     border: none;
     font-size: 1.5rem;
     padding: 0.8vmin 0vmin;
     cursor: pointer;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    #heading h1 {
+        font-size: 3rem;
+    }
+
+    #heading p {
+        font-size: 1rem;
+    }
+
+    #search-bar input {
+        font-size: 1rem;
+        padding: 1.2vmin 2vmin;
+        border: none;
+        border-radius: 50px;
+        width: 10vmin;
+    }
+
+    #add-button {
+        font-size: 1rem;
+        padding: 0vmin 2vmin;
+        border: none;
+        border-radius: 10px;
+        border: 2px solid transparent;
+        cursor: pointer;
+    }
+
+    #play-button-div {
+        display: flex;
+        justify-content: center;
+        margin: 6vmin 0vmin 15vmin 0vmin;
+    }
+
+    #play-button {
+        font-size: 1rem;
+        padding: 1vmin 2.5vmin;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    iframe {
+        width: 176px;
+        height: 100px;
+        border: none;
+    }
+
+    .remove-button {
+        background-color: red;
+        color: white;
+        border: none;
+        font-size: 1rem;
+        padding: 0.8vmin 0vmin;
+        cursor: pointer;
+    }
 }
