@@ -1,7 +1,5 @@
-// https://youtu.be/lvDEYEPDpQE?si=_Wjco8s6e33uLkzj
-
+// Handles various YouTube URL formats
 function extractVideoId(url) {
-    // Handles various YouTube URL formats
     const regex = /(?:youtube\.com\/.*v=|youtu\.be\/|youtube\.com\/shorts\/)([A-Za-z0-9_-]{11})/;
     const match = url.match(regex);
     return match ? match[1] : null;
@@ -10,9 +8,21 @@ function extractVideoId(url) {
 videos = []
 
 class addVideo {
-    constructor(code, url) {
-        this.url = url
+    constructor(code) {
         this.code = code
+        this.url = `https://www.youtube.com/embed/${code}?autoplay=0&mute=0`
+        this.iframe = null
+    }
+
+    getEmbedUrl({autoplay=false, mute=false, loop=false} = {}){
+        const params = new URLSearchParams();
+        if (autoplay) {params.set("autoplay", "1")}
+        if (mute) {params.set("mute", "1")}
+        if (loop) {
+            params.set("loop", "1")
+            params.set("playlist", this.code)
+        }
+        return `https://www.youtube.com/embed/${this.code}?${params.toString()}`
     }
 }
 
@@ -20,15 +30,23 @@ const addBtn = document.getElementById('add-button')
 const playAllBtn = document.getElementById('play-button')
 const pauseAllBtn = document.getElementById('pause-button')
 const invaildUrl = document.getElementById('invalid-url')
+const videoSection = document.getElementById('video-section')
+const urlInput = document.getElementById('url-input')
 
 function renderVideos() {
-    const videoSection = document.getElementById('video-section')
+    
     videoSection.innerHTML = ''
 
     videos.forEach((item, index) => {
         const videoDiv = document.createElement('div')
         videoDiv.className = 'video-frame'
+
         const iframe = document.createElement('iframe')
+        iframe.src = item.url
+        iframe.setAttribute("allow", "autoplay")
+        iframe.allowFullscreen = true
+        item.iframe = iframe
+
         const removeBtn = document.createElement('button')
         removeBtn.className = 'remove-button'
         removeBtn.innerHTML = 'Remove <i class="fa-solid fa-trash"></i>'
@@ -38,26 +56,17 @@ function renderVideos() {
             renderVideos()
         })
 
-        // iframe.width = "400"
-        // iframe.height = "225"
-        iframe.src = item.url
-        iframe.setAttribute("allow", "autoplay")
-        iframe.allowFullscreen = true
         videoDiv.append(iframe, removeBtn)
         videoSection.append(videoDiv)
     })
 }
 
 addBtn.addEventListener('click', () => {
-    const urlInput = document.getElementById('url-input')
-    if (urlInput.value) {
-        const code = extractVideoId(urlInput.value)
-        const url = `https://www.youtube.com/embed/${code}?autoplay=0&mute=0`
-        const video = new addVideo(code, url)
+    const input_code = extractVideoId(urlInput.value.trim())
+    if (input_code) {
+        const video = new addVideo(input_code)
         videos.push(video)
-
         renderVideos()
-        invaildUrl.textContent = ''
     }
     else {
         alert('Enter a valid URL')
@@ -68,14 +77,17 @@ addBtn.addEventListener('click', () => {
 playAllBtn.addEventListener('click', () => {
 
     videos.forEach((item) => {
-        item.url = `https://www.youtube.com/embed/${item.code}?autoplay=1&mute=0&loop=1&playlist=${item.code}`
+        const newUrl = item.getEmbedUrl({autoplay:true, mute:false, loop:true})
+        item.url = newUrl
+        item.iframe.src = newUrl
     })
-    renderVideos()
 })
 
 pauseAllBtn.addEventListener('click', () => {
     videos.forEach(item => {
-        item.url = `https://www.youtube.com/embed/${item.code}?`
+        const newUrl = item.getEmbedUrl({})
+        item.url = newUrl
+        item.iframe.src = newUrl
     })
     renderVideos()
 })
