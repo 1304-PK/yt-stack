@@ -18,6 +18,7 @@ class addVideo {
 
 const addBtn = document.getElementById('add-button')
 const playAllBtn = document.getElementById('play-button')
+const pauseAllBtn = document.getElementById('pause-button')
 const invaildUrl = document.getElementById('invalid-url')
 
 function renderVideos() {
@@ -59,15 +60,22 @@ addBtn.addEventListener('click', () => {
         invaildUrl.textContent = ''
     }
     else {
-        invaildUrl.textContent = 'Invalid URL'
+        alert('Enter a valid URL')
     }
-
+    urlInput.value = ''
 })
 
 playAllBtn.addEventListener('click', () => {
 
     videos.forEach((item) => {
         item.url = `https://www.youtube.com/embed/${item.code}?autoplay=1&mute=0&loop=1&playlist=${item.code}`
+    })
+    renderVideos()
+})
+
+pauseAllBtn.addEventListener('click', () => {
+    videos.forEach(item => {
+        item.url = `https://www.youtube.com/embed/${item.code}?`
     })
     renderVideos()
 })
