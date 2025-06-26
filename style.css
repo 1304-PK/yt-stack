@@ -9,7 +9,7 @@
 body {
     min-height: 100vh;
     background-color: black;
-    background-image: url(assets/coolbackgrounds-particles-ether.png);
+    background-image: url(assets/bg.png);
     color: black;
     font-family: 'Poppins';
 }
@@ -70,6 +70,7 @@ body {
 
 #play-button-div {
     display: flex;
+    gap: 5vmin;
     justify-content: center;
     margin: 6vmin 0vmin 6vmin 0vmin;
 }
@@ -90,6 +91,20 @@ body {
     }
 }
 
+#pause-button{
+    background-color: #888;
+    border: 2px solid #888;
+    color: white;
+    font-size: 1.7rem;
+    padding: 1vmin 2.5vmin;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: white;
+        color: black;
+    }
+}
 
 #video-section {
     /* background-color: lightblue; */
