@@ -175,6 +175,14 @@ iframe {
         cursor: pointer;
     }
 
+    #pause-button {
+        font-size: 1rem;
+        padding: 1vmin 2.5vmin;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
     iframe {
         width: 176px;
         height: 100px;
