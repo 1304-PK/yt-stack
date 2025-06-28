@@ -14,10 +14,10 @@ class addVideo {
         this.iframe = null
     }
 
-    getEmbedUrl({autoplay=false, mute=false, loop=false} = {}){
+    getEmbedUrl({ autoplay = false, mute = false, loop = false } = {}) {
         const params = new URLSearchParams();
-        if (autoplay) {params.set("autoplay", "1")}
-        if (mute) {params.set("mute", "1")}
+        if (autoplay) { params.set("autoplay", "1") }
+        if (mute) { params.set("mute", "1") }
         if (loop) {
             params.set("loop", "1")
             params.set("playlist", this.code)
@@ -33,8 +33,12 @@ const invaildUrl = document.getElementById('invalid-url')
 const videoSection = document.getElementById('video-section')
 const urlInput = document.getElementById('url-input')
 
+const dialog = document.querySelector('dialog')
+const d_yes = document.getElementById('dialog-yes-button')
+const d_no = document.getElementById('dialog-no-button')
+
 function renderVideos() {
-    
+
     videoSection.innerHTML = ''
 
     videos.forEach((item, index) => {
@@ -53,6 +57,7 @@ function renderVideos() {
 
         removeBtn.addEventListener('click', () => {
             videos.splice(index, 1)
+            localStorage.setItem('yt-stack', JSON.stringify(videos))
             renderVideos()
         })
 
@@ -66,6 +71,7 @@ addBtn.addEventListener('click', () => {
     if (input_code) {
         const video = new addVideo(input_code)
         videos.push(video)
+        localStorage.setItem('yt-stack', JSON.stringify(videos))
         renderVideos()
     }
     else {
@@ -77,7 +83,7 @@ addBtn.addEventListener('click', () => {
 playAllBtn.addEventListener('click', () => {
 
     videos.forEach((item) => {
-        const newUrl = item.getEmbedUrl({autoplay:true, mute:false, loop:true})
+        const newUrl = item.getEmbedUrl({ autoplay: true, mute: false, loop: true })
         item.url = newUrl
         item.iframe.src = newUrl
     })
@@ -90,4 +96,26 @@ pauseAllBtn.addEventListener('click', () => {
         item.iframe.src = newUrl
     })
     renderVideos()
+})
+
+window.onload = () => {
+    const storedVideos = JSON.parse(localStorage.getItem('yt-stack'))
+    if (storedVideos) {
+        dialog.showModal()
+    }
+}
+
+d_yes.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    const storedVideos = JSON.parse(localStorage.getItem('yt-stack'))
+    videos = storedVideos
+    renderVideos()
+
+    dialog.close()
+})
+
+d_no.addEventListener('click', (e) => {
+    e.preventDefault()
+    dialog.close()
 })
