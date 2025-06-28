@@ -6,11 +6,11 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-43BQ0MTT16"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'G-43BQ0MTT16');
+        gtag('config', 'G-43BQ0MTT16');
     </script>
 
     <meta charset="UTF-8">
@@ -38,9 +38,18 @@
         <button id="pause-button">Pause All <i class="fa-regular fa-circle-pause"></i></button>
     </div>
 
-    <div id="video-section">
+    <div id="video-section"></div>
 
-    </div>
+    <dialog>
+        <form action="">
+            <h1>It seems you have videos stored from the last time</h1>
+            <h2>Would you like to load them now?</h2>
+            <div id="dialog-buttons">
+                <button id="dialog-yes-button">Yes</button>
+                <button id="dialog-no-button">No</button>
+            </div>
+        </form>
+    </dialog>
 
     <script src="script.js"></script>
 </body>
