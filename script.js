@@ -117,5 +117,8 @@ d_yes.addEventListener('click', (e) => {
 
 d_no.addEventListener('click', (e) => {
     e.preventDefault()
+
+    localStorage.removeItem('yt-stack')
+
     dialog.close()
 })
