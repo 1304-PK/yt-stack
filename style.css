@@ -153,12 +153,13 @@ dialog h1 {
 }
 
 dialog h2 {
+    margin-top: 1vmin;
     color: rgb(128, 128, 128);
 }
 
 #dialog-buttons {
     display: flex;
-    margin-top: 3vmin;
+    margin-top: 5vmin;
     justify-content: space-around;
 }
 
